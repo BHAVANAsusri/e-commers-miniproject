@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout | Flipkart</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="checkout-container">
+    <h2>🧾 Checkout</h2>
+
+    <ul>
+      <% cartItems.forEach(item => { %>
+        <li><%= item.name %> - ₹<%= item.price %></li>
+      <% }) %>
+    </ul>
+
+    <h3>Total: ₹<%= total %></h3>
+
+    <form method="POST" action="/products/checkout">
+      <label>Address:</label><br>
+      <textarea name="address" rows="4" required></textarea><br><br>
+      <button type="submit" class="btn">Confirm Order</button>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Cart | Flipkart</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    body.cart-page {
+      background: linear-gradient(to right, #f9f9f9, #e0e0e0);
+      font-family: Arial, sans-serif;
+    }
+
+    .cart-container {
+      max-width: 800px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+
+    .cart-details {
+      flex: 1;
+    }
+
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    .cart-actions {
+      margin-top: 30px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body class="cart-page">
+  <div class="cart-container">
+    <h2>🛒 Your Cart</h2>
+
+    <% if (cartItems.length > 0) { %>
+      <ul class="cart-list">
+        <% cartItems.forEach(item => { %>
+          <li class="cart-item">
+            <div class="cart-details">
+              <strong><%= item.name %></strong> - ₹<%= item.price %><br>
+              <em><%= item.description %></em>
+            </div>
+            <form method="POST" action="/products/remove-from-cart/<%= item._id %>">
+              <button class="btn" type="submit">Remove</button>
+            </form>
+          </li>
+        <% }) %>
+      </ul>
+
+      <div class="cart-actions">
+        <h3>Total: ₹<%= total %></h3>
+        <button class="btn">Proceed to Checkout</button>
+      </div>
+    <% } else { %>
+      <p>Your cart is empty.</p>
+    <% } %>
+  </div>
+</body>
+</html>
